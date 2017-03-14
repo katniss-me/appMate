@@ -1,0 +1,6 @@
+framework module Pods_AppMate {
+  umbrella header "Pods-AppMate-umbrella.h"
+
+  export *
+  module * { export * }
+}
