@@ -9,8 +9,9 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import FacebookCore
 
-class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     @IBOutlet weak var googleMap: GMSMapView!
     var pincount : Int = 0
     var locationManager = CLLocationManager()
@@ -18,9 +19,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
     let initialLocation : ProfileView = ProfileView(imgString : "bogum.jpg", primary_ID:1111, isFlag: false)
     let preferedLocation : ProfileView = ProfileView(imgString : "flag", primary_ID:1111, isFlag: true)
     var initialMarker : GMSMarker!
-    
+    var facebookUserInfos:Dictionary<String,Any>! = nil
+    var workExp = Array<Any>()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if DataCenter.sharedInstance.logInUserInfo != nil{
+            facebookUserInfos = DataCenter.sharedInstance.logInUserInfo
+            workExp =  facebookUserInfos["work"] as! Array
+
+            for index in 0...workExp.count - 1 {
+                print(workExp[index])
+                
+            }
+            
+        }
+        else{
+            print("사용자 정보를 못가져왔습니다.")
+        }
+        
+        
+        
+        
         locationManager.delegate = self
         googleMap.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -67,10 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
             marker.map = nil
             pincount -= 1
             
-        }
-        
-        
-        
+        }        
         return true
         
     }
@@ -94,7 +110,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
         
         
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
