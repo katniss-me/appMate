@@ -21,6 +21,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var initialMarker : GMSMarker!
     var facebookUserInfos:Dictionary<String,Any>! = nil
     var workExp = Array<Any>()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if DataCenter.sharedInstance.logInUserInfo != nil{
@@ -28,8 +30,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             workExp =  facebookUserInfos["work"] as! Array
 
             for index in 0...workExp.count - 1 {
-                print(workExp[index])
+                let dicTemp:Dictionary<String,Any> = workExp[index] as! Dictionary
+                print(dicTemp)
+                let employerDic:Dictionary<String,Any> = dicTemp["employer"] as! Dictionary
+                let positionDic:Dictionary<String,Any> = dicTemp["position"] as! Dictionary
+                let employerName = employerDic["name"]
+                let postionName = positionDic["name"]
                 
+                let start_date:String = dicTemp["start_date"] as! String
+                let end_date:String = dicTemp["end_date"] as! String
+                
+                print(employerName!, postionName! ,start_date, end_date)      
             }
             
         }
