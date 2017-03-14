@@ -10,7 +10,7 @@ import UIKit
 
 class DataCenter: NSObject {
     
-    var _logInUserInfo:Dictionary<String, Any>?
+    private var _logInUserInfo:Dictionary<String, Any>?
     var logInUserInfo:Dictionary<String, Any>?{
         get{
             return _logInUserInfo        }

@@ -19,38 +19,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     let initialLocation : ProfileView = ProfileView(imgString : "bogum.jpg", primary_ID:1111, isFlag: false)
     let preferedLocation : ProfileView = ProfileView(imgString : "flag", primary_ID:1111, isFlag: true)
     var initialMarker : GMSMarker!
-    var facebookUserInfos:Dictionary<String,Any>! = nil
-    var workExp = Array<Any>()
     
-    
+    var facebookUserInfos:Dictionary<String,Any>?
     override func viewDidLoad() {
         super.viewDidLoad()
-        if DataCenter.sharedInstance.logInUserInfo != nil{
-            facebookUserInfos = DataCenter.sharedInstance.logInUserInfo
-            workExp =  facebookUserInfos["work"] as! Array
-
-            for index in 0...workExp.count - 1 {
-                let dicTemp:Dictionary<String,Any> = workExp[index] as! Dictionary
-                print(dicTemp)
-                let employerDic:Dictionary<String,Any> = dicTemp["employer"] as! Dictionary
-                let positionDic:Dictionary<String,Any> = dicTemp["position"] as! Dictionary
-                let employerName = employerDic["name"]
-                let postionName = positionDic["name"]
-                
-                let start_date:String = dicTemp["start_date"] as! String
-                let end_date:String = dicTemp["end_date"] as! String
-                
-                print(employerName!, postionName! ,start_date, end_date)      
-            }
-            
-        }
-        else{
-            print("사용자 정보를 못가져왔습니다.")
-        }
-        
-        
-        
-        
+        facebookUserInfos = DataCenter.sharedInstance.logInUserInfo
+        setExp()
         locationManager.delegate = self
         googleMap.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -121,6 +95,49 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         
     }
+    
+    
+    func setExp(){
+        var workExp = Array<Any>()
+        workExp = facebookUserInfos!["work"] as! Array
+        for index in 0...workExp.count-1 {
+            
+            if (workExp[index] as! NSDictionary).value(forKey:"employer") != nil
+            {
+                print((((workExp[index] as! NSDictionary).value(forKey:"employer")) as! NSDictionary).value(forKey: "name")!)
+            }
+            else
+            {
+                print("직장없음")
+            }
+            if (workExp[index] as! NSDictionary).value(forKey:"position") != nil
+            {
+                print((((workExp[index] as! NSDictionary).value(forKey:"position")) as! NSDictionary).value(forKey: "name")!)
+            }
+            if (workExp[index] as! NSDictionary).value(forKey:"start_date") != nil
+            {
+                print((workExp[index] as! NSDictionary).value(forKey:"start_date")!)
+            }
+            else{
+                print("0000~")
+            }
+            
+            if (workExp[index] as! NSDictionary).value(forKey:"end_date") != nil
+            {
+                print((workExp[index] as! NSDictionary).value(forKey:"end_date")!)
+            }
+            else{
+                print("현재")
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
