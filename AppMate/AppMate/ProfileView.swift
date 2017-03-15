@@ -10,7 +10,6 @@ import UIKit
 
 class ProfileView: UIView {
     
-//    var button:UIButton!
     var profileIme:UIImageView!
     var primary_ID:Int!
     var isFlag:Bool!
@@ -36,7 +35,6 @@ class ProfileView: UIView {
     
     func getUserInfo()->(primary_ID:Int, isFlag:Bool)?{
         
-        print(primary_ID)
         return (primary_ID , isFlag)
     
     }

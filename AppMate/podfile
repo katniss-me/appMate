@@ -6,6 +6,7 @@ target 'AppMate' do
   use_frameworks!
 pod 'FacebookLogin'
 pod 'GoogleMaps'
+pod 'AFNetworking', '~> 3.0'
   # Pods for AppMate
 
 end

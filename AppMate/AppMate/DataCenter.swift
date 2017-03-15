@@ -18,7 +18,6 @@ class DataCenter: NSObject {
             _logInUserInfo = newVal
         }
     }
-    
     static let sharedInstance = DataCenter()
     
 }

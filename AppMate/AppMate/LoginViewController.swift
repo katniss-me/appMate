@@ -21,8 +21,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         if AccessToken.current != nil{
             getUserInfo()
         }
-        
-        
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .custom("user_work_history")])
         loginButton.center = view.center
         loginButton.delegate = self

@@ -95,8 +95,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         
     }
-    
-    
     func setExp(){
         var workExp = Array<Any>()
         workExp = facebookUserInfos!["work"] as! Array
@@ -129,16 +127,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             else{
                 print("현재")
             }
-            
-            
         }
         
         
     }
-    
-    
-    
-    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
