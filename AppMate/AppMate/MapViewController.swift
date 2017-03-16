@@ -19,10 +19,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     let initialLocation : ProfileView = ProfileView(imgString : "bogum.jpg", primary_ID:1111, isFlag: false)
     let preferedLocation : ProfileView = ProfileView(imgString : "flag", primary_ID:1111, isFlag: true)
     var initialMarker : GMSMarker!
-    
     var facebookUserInfos:Dictionary<String,Any>?
     override func viewDidLoad() {
         super.viewDidLoad()
+        googleMap.isMyLocationEnabled = true
         facebookUserInfos = DataCenter.sharedInstance.logInUserInfo
         setExp()
         locationManager.delegate = self
@@ -48,7 +48,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         initialMarker.appearAnimation = kGMSMarkerAnimationPop
         initialMarker.snippet = "ME"
         initialMarker.map = googleMap
-        locationManager.stopUpdatingLocation()
+//        locationManager.stopUpdatingLocation()
         
     }
     
@@ -131,7 +131,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         
     }
- 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

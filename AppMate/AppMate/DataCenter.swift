@@ -9,15 +9,22 @@
 import UIKit
 
 class DataCenter: NSObject {
-    
     private var _logInUserInfo:Dictionary<String, Any>?
+    private var nManger : NetworkManager!
     var logInUserInfo:Dictionary<String, Any>?{
         get{
-            return _logInUserInfo        }
+            return _logInUserInfo
+        }
         set(newVal){
             _logInUserInfo = newVal
         }
     }
     static let sharedInstance = DataCenter()
+    
+    override init() {
+        nManger = NetworkManager();
+    }
+    
+    
     
 }

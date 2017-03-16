@@ -14,7 +14,6 @@ import FBSDKCoreKit
 
 class LoginViewController: UIViewController, LoginButtonDelegate {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,8 +44,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: LoginButton){
         
-        print("로그아웃!!")
-        
         
     }
     func getUserInfo() {
@@ -67,11 +64,5 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
                 }
             }
         }
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
