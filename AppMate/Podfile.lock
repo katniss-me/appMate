@@ -22,10 +22,13 @@ PODS:
   - GoogleMaps/Base (2.1.1)
   - GoogleMaps/Maps (2.1.1):
     - GoogleMaps/Base
+  - GooglePlaces (2.1.1):
+    - GoogleMaps/Base (= 2.1.1)
 
 DEPENDENCIES:
   - FacebookLogin
   - GoogleMaps
+  - GooglePlaces
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -34,7 +37,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
 
-PODFILE CHECKSUM: c4a16cdf9004c084bbdae022e9b004c8fbdddaae
+PODFILE CHECKSUM: 64e1e3b83c4ae574ba09a49e328fd0b2902c12ba
 
 COCOAPODS: 1.1.1

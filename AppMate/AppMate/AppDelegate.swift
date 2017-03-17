@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import FacebookCore
 import GoogleMaps
+import GooglePlaces
 
 
 @UIApplicationMain
@@ -22,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey("AIzaSyCJgB9v0r74qeRLhEdD4AQia-qHlGkNZWI")
+        GMSPlacesClient.provideAPIKey("AIzaSyByVlHkE4NABnwvhbao78J7M1VgHpcFEAY")
+        
+        
+        
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
