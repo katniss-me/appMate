@@ -22,6 +22,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
     let initialLocation : ProfileView = ProfileView(imgString: "bogum.jpg", user_id: "heyman333")
     var initialMarker : GMSMarker!
     
+    
     /* 주소검색 변수 */
     var searchResultController: SearchResultsController!
     var resultsArray = [String]()
@@ -101,7 +102,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
             marker.icon = preferedLocation
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.snippet = "prefered"
+            marker.title = "Address"
             marker.map = googleMap
+            reverseGeocodeCoordinate(coordinate: coordinate)
         }
         else{
             print("3개 모두 찍었습니다.")
@@ -184,34 +187,64 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
      */
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        //        let placeClient = GMSPlacesClient()
-        //
-        //
-        //        placeClient.autocompleteQuery(searchText, bounds: nil, filter: nil)  {(results, error: Error?) -> Void in
-        //           // NSError myerr = Error;
-        //            print("Error @%",Error.self)
-        //
-        //            self.resultsArray.removeAll()
-        //            if results == nil {
-        //                return
-        //            }
-        //
-        //            for result in results! {
-        //                if let result = result as? GMSAutocompletePrediction {
-        //                    self.resultsArray.append(result.attributedFullText.string)
-        //                }
-        //            }
-        //
-        //            self.searchResultController.reloadDataWithArray(self.resultsArray)
-        //
-        //        }
-        
         
         self.resultsArray.removeAll()
         gmsFetcher?.sourceTextHasChanged(searchText)
         
         
     }
-
     
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
+        
+        // 1
+        let geocoder = GMSGeocoder()
+        
+        // 2
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                
+                // 3
+                let lines = address.lines as [String]!
+                print((lines?[0])! as String)
+                
+                // 4
+                UIView.animate(withDuration: 0.25) {
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+  
+    
+//    
+//    func chekCityWithCompletionBlock(blcok:(_ same:Bool) -> Void ) {
+//        GMSGeocoder.reverseGeocodeCoordinate(self.locationManager.location?.coordinate.)
+//
+//        
+//    }
+//    
+    
+    
+    
+//    - (void)checkCitiesWithCompletionBlock:(void (^)(BOOL same))
+//    //Checking user's city
+//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:self.locationManager.location.coordinate completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
+//    if (error) {
+//    NSLog(@"%@",[error description]);
+//    }
+//    id userCity=[[[response results] firstObject] locality];
+//    
+//    //Checking store's city
+//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:arounder.radiusCircularRegion.center completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
+//    if (error) {
+//    NSLog(@"%@",[error description]);
+//    }
+//    id arounderCity=[[[response results] firstObject] locality];
+//    
+//    same ([userCity isEqualToString:arounderCity]);
+//    }];
+//    }];
+//}
+
+
 }
