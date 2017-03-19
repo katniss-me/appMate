@@ -196,55 +196,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate,GMSMapViewD
     
     func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
         
-        // 1
         let geocoder = GMSGeocoder()
-        
-        // 2
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             if let address = response?.firstResult() {
-                
-                // 3
                 let lines = address.lines as [String]!
                 print((lines?[0])! as String)
-                
-                // 4
-                UIView.animate(withDuration: 0.25) {
-                    self.view.layoutIfNeeded()
                 }
             }
         }
     }
   
-    
-//    
-//    func chekCityWithCompletionBlock(blcok:(_ same:Bool) -> Void ) {
-//        GMSGeocoder.reverseGeocodeCoordinate(self.locationManager.location?.coordinate.)
-//
-//        
-//    }
-//    
-    
-    
-    
-//    - (void)checkCitiesWithCompletionBlock:(void (^)(BOOL same))
-//    //Checking user's city
-//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:self.locationManager.location.coordinate completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
-//    if (error) {
-//    NSLog(@"%@",[error description]);
-//    }
-//    id userCity=[[[response results] firstObject] locality];
-//    
-//    //Checking store's city
-//    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:arounder.radiusCircularRegion.center completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
-//    if (error) {
-//    NSLog(@"%@",[error description]);
-//    }
-//    id arounderCity=[[[response results] firstObject] locality];
-//    
-//    same ([userCity isEqualToString:arounderCity]);
-//    }];
-//    }];
-//}
 
 
-}
+
